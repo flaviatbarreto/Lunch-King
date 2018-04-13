@@ -4,16 +4,6 @@
  * @var \App\Model\Entity\Applicant[]|\Cake\Collection\CollectionInterface $applicants
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Applicant'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Kings'), ['controller' => 'Kings', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New King'), ['controller' => 'Kings', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Votes'), ['controller' => 'Votes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Vote'), ['controller' => 'Votes', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="applicants index large-9 medium-8 columns content">
     <h3><?= __('Applicants') ?></h3>
     <table cellpadding="0" cellspacing="0">

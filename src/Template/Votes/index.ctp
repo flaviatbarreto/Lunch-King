@@ -4,14 +4,6 @@
  * @var \App\Model\Entity\Vote[]|\Cake\Collection\CollectionInterface $votes
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Vote'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Applicants'), ['controller' => 'Applicants', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Applicant'), ['controller' => 'Applicants', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="votes index large-9 medium-8 columns content">
     <h3><?= __('Votes') ?></h3>
     <table cellpadding="0" cellspacing="0">
