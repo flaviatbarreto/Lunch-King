@@ -51,16 +51,21 @@ class VotesController extends AppController
      */
     public function add()
     {
-        $vote = $this->Votes->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post'))
+        {
+            $vote = $this->Votes->newEntity();
             $vote = $this->Votes->patchEntity($vote, $this->request->getData());
-            if ($this->Votes->save($vote)) {
-                $this->Flash->success(__('The vote has been saved.'));
+            $vote->day = date('Y-m-d');
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->Votes->save($vote))
+            {
+                $this->Flash->success(__('The vote has been saved.'));
+                //return $this->redirect(['action' => 'index']);
+            }else{
+                $this->Flash->error(__('The vote could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The vote could not be saved. Please, try again.'));
         }
+        $vote = $this->Votes->newEntity();
         $applicants = $this->Votes->Applicants->find('list', ['limit' => 200]);
         $this->set(compact('vote', 'applicants'));
     }

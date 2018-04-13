@@ -5,13 +5,19 @@
  */
 ?>
 
+<h1 class="h3">Who is the king today?</h1>
+
 <?= $this->Form->create($vote) ?>
-<fieldset>
-    <legend><?= __('Add Vote') ?></legend>
-    <?php
-        echo $this->Form->control('day');
-        echo $this->Form->control('applicant_id', ['options' => $applicants]);
-    ?>
-</fieldset>
-<?= $this->Form->button(__('Vote')) ?>
+    <?php foreach($applicants as $id => $applicant): ?>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="applicant_id" id="applicant<?=$id?>" value="<?=$id?>">
+                    <label class="form-check-label" for="applicant<?=$id?>">
+                        <?=$applicant?>
+                    </label>
+                </div>
+            </div>
+    <?php endforeach; ?>
+
+<?= $this->Form->button(__('Vote'), ['class'=>'btn btn-success']) ?>
 <?= $this->Form->end() ?>

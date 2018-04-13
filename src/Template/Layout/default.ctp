@@ -36,8 +36,8 @@
         </nav>
     </header>
     <hr>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix col-md-8 offset-md-2">
+    <div class="container clearfix col-md-8 offset-md-4">
+        <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     </div>
     <footer>
