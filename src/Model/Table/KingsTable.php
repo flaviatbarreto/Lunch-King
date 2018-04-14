@@ -84,4 +84,11 @@ class KingsTable extends Table
 
         return $rules;
     }
+
+    public function findDayWinner(Query $query, Array $options)
+    {
+        return $query
+            ->where(['day' => $options['date']])
+            ->first();
+    }
 }
