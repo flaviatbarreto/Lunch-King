@@ -19,25 +19,14 @@ class KingsController extends AppController
 
         if(!$winner)
         {
-            //calcula o $winner
-            //applicant model entity
+            $this->loadModel('Votes');
+            $vote_e = $this->Votes->newEntity();
+            $vote_e->dayWinner($date);
+
+            $winner = $this->Kings->find('dayWinner', ['date'=>$date]);
         }
-        dd($winner);
-    }
 
-    /**
-     * View method
-     *
-     * @param string|null $id King id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $king = $this->Kings->get($id, [
-            'contain' => ['Applicants']
-        ]);
-
-        $this->set('king', $king);
+        $this->set('king', $winner);
+        $this->set('date', $date);
     }
 }

@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * Vote Entity
@@ -29,4 +30,21 @@ class Vote extends Entity
         'applicant_id' => true,
         'applicant' => true
     ];
+
+    public function dayWinner($date)
+    {
+        $votes = TableRegistry::get('Votes')->find('sumVotes', ['date' => $date]);
+        foreach($votes as $key => $vote)
+        {
+            $king = TableRegistry::get('Kings')->newEntity();
+            if($key == 0)
+            {
+                $king->winner = 1;
+            }
+            $king->applicant_id = $vote['applicant_id'];
+            $king->n_votes = $vote['count'];
+            $king->day = $date;
+            TableRegistry::get('Kings')->save($king);
+        }
+    }
 }

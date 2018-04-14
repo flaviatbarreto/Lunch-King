@@ -75,4 +75,14 @@ class VotesTable extends Table
 
         return $rules;
     }
+
+    public function findSumVotes(Query $query, Array $options)
+    {
+        return $query
+            ->hydrate(false)
+            ->select(['applicant_id', 'count' => $query->func()->count('1')])
+            ->group('applicant_id')
+            ->where(['day' => $options['date']])
+            ->order(['count' => 'DESC']);
+    }
 }
