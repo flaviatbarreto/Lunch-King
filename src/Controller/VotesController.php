@@ -50,13 +50,12 @@ class VotesController extends AppController
             if ($this->Votes->save($vote))
             {
                 $this->Flash->success(__('The vote has been saved.'));
-                //return $this->redirect(['action' => 'index']);
             }else{
                 $this->Flash->error(__('The vote could not be saved. Please, try again.'));
             }
         }
         $vote = $this->Votes->newEntity();
-        $applicants = $this->Votes->Applicants->find('list', ['limit' => 200]);
+        $applicants = $this->Votes->Applicants->find('all');
         $this->set(compact('vote', 'applicants'));
     }
 }
