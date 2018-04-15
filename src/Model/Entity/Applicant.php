@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property string $photo
  *
  * @property \App\Model\Entity\King[] $kings
  * @property \App\Model\Entity\Vote[] $votes
@@ -28,6 +29,7 @@ class Applicant extends Entity
     protected $_accessible = [
         'name' => true,
         'email' => true,
+        'photo' => true,
         'kings' => true,
         'votes' => true
     ];

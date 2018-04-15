@@ -4,15 +4,21 @@
  * @var \App\Model\Entity\Applicant $applicant
  */
 ?>
-<div class="applicants form large-9 medium-8 columns content">
-    <?= $this->Form->create($applicant) ?>
-    <fieldset>
-        <legend><?= __('Add Applicant') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('email');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+<?= $this->Form->create($applicant, [
+    'class' => 'col-md-6',
+    'enctype' => 'multipart/form-data'
+]) ?>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" id="name" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" id="email" required>
+    </div>
+    <div class="form-group">
+        <label for="photo">Photo</label>
+        <input type="file" class="form-control" name="photo" id="photo" required>
+    </div>
+<?= $this->Form->button(__('Submit'), ['class' => 'btn btn-success']) ?>
+<?= $this->Form->end() ?>

@@ -51,10 +51,27 @@ class ApplicantsController extends AppController
         $applicant = $this->Applicants->newEntity();
         if ($this->request->is('post')) {
             $applicant = $this->Applicants->patchEntity($applicant, $this->request->getData());
+
+            $filename = $this->request->getData('photo.name');
+            $tmpfile = $this->request->getData('photo.tmp_name');
+            $filetype = $this->request->getData('photo.type');
+
+            $allowed_types = ['image/png','image/jpg','image/jpeg'];
+
+            if(!in_array($filetype, $allowed_types))
+            {
+                throw new \Exception("Error Processing Request", 1);
+            }else if(is_uploaded_file($tmpfile))
+            {
+                $filename = uniqid().'-'.$filename;
+                move_uploaded_file($tmpfile, WWW_ROOT.'img'.DS.$filename);
+                $applicant->photo = $filename;
+            }
+
             if ($this->Applicants->save($applicant)) {
                 $this->Flash->success(__('The applicant has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
         }

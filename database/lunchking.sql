@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 12-Abr-2018 às 23:04
+-- Generation Time: 15-Abr-2018 às 23:23
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -31,8 +31,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `applicants` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `photo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `applicants`
+--
+
+INSERT INTO `applicants` (`id`, `name`, `email`, `photo`) VALUES
+(5, 'Robert Baratheon', 'robert@got.com', '5ad3c13873368-robert-baratheon.jpg'),
+(6, 'Joffrey', 'joffrey@got.com', '5ad3c18fef814-Joffrey.jpg'),
+(7, 'Cersei Lannister', 'cersei@got.com', '5ad3c1b103e0e-cersei_lannister.jpg');
 
 -- --------------------------------------------------------
 
@@ -45,7 +55,7 @@ CREATE TABLE `kings` (
   `applicant_id` int(11) NOT NULL,
   `day` date NOT NULL,
   `n_votes` int(11) NOT NULL,
-  `winner` tinyint(4) NOT NULL
+  `winner` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -93,19 +103,19 @@ ALTER TABLE `votes`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `kings`
 --
 ALTER TABLE `kings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

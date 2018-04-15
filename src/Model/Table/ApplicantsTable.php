@@ -64,6 +64,12 @@ class ApplicantsTable extends Table
             ->notEmpty('name');
 
         $validator
+            ->scalar('photo')
+            ->maxLength('photo', 255)
+            ->requirePresence('photo', 'create')
+            ->notEmpty('photo');
+
+        $validator
             ->email('email')
             ->requirePresence('email', 'create')
             ->notEmpty('email')
